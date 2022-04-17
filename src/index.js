@@ -45,16 +45,16 @@ function fetchPosts(d) {
     fetch(`https://jsonplaceholder.typicode.com/users/${d.id}`)
         .then(r=>r.json())
         .then(user=> renderUser(user))
-        .then(setImage)
+        .then(()=> setImage)
 }
 //end fetch of feat mon//
 function setImage(){
       fetch("https://dog.ceo/api/breeds/image/random")
         .then(r=>r.json())
-        .then(dog=> mainImg.src=dog.message)
+        .then(dog=> mainImg.src=`${dog.message}`)
 }
 function renderUser(u){
-    removeAllChildNodes(userList)
+    removeAllChildNodes(postList)
     userId.innerHTML=`Posts from User: ${u.username}`
      fetch(`https://jsonplaceholder.typicode.com/users/${u.id}/posts`)
         .then(r=>r.json())
@@ -64,7 +64,8 @@ function renderUser(u){
                 let postBody= document.createElement('p')
                 postLi.innerHTML = `${p.title}`
                 postBody.innerHTML = `${p.body}`
-                postList.appendChild(postLi, postBody)
+                postLi.appendChild(postBody)
+                postList.appendChild(postLi)
             })
         })
 }
