@@ -5,7 +5,7 @@ $(document).ready(function () {
 const mainImg = document.getElementById("main-img")
 const pkmnType = document.getElementById("pkmn-type")
 const userId = document.getElementById("user-id")
-const abilities = document.getElementById("abilities")
+const postList = document.getElementById("post-list")
 const userList = document.getElementById("user-list")
 let teamDiv = document.createElement('div')
 
@@ -45,29 +45,31 @@ function fetchPosts(d) {
     fetch(`https://jsonplaceholder.typicode.com/users/${d.id}`)
         .then(r=>r.json())
         .then(user=> renderUser(user))
-
+        .then(setImage)
+}
 //end fetch of feat mon//
-
+function setImage(){
+      fetch("https://dog.ceo/api/breeds/image/random")
+        .then(r=>r.json())
+        .then(dog=> mainImg.src=dog.message)
+}
 function renderUser(u){
+    removeAllChildNodes(userList)
     userId.innerHTML=`Posts from User: ${u.username}`
-    mainImg.src="https://api.thecatapi.com/v1/images/search"
      fetch(`https://jsonplaceholder.typicode.com/users/${u.id}/posts`)
         .then(r=>r.json())
         .then(posts => {
             posts.map((p)=>{
-
+                let postLi = document.createElement('li')
+                let postBody= document.createElement('p')
+                postLi.innerHTML = `${p.title}`
+                postBody.innerHTML = `${p.body}`
+                postList.appendChild(postLi, postBody)
             })
         })
 }
-//**event listener set on search bar//
-document.getElementById('monLookup').addEventListener('submit', (e) =>{
-        e.preventDefault()
-        fetch(monsUrl + (document.getElementById('mon').value) + '/')
-        .then(data => data.json())
-        .then(mon => renderMon(mon))
 
-})
                             
 
 //end of doc ready//
-  }}  )
+  }  )
