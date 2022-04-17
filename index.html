@@ -1,61 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,  shrink-to-fit=yes"
-    />
+    <meta name="viewport" content="width=device-width,  shrink-to-fit=yes" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
 
-    
-    
-    <link rel="stylesheet" type="text/css" href="main.css"/>
-
-      
     <title>Ksense Coding Challenge</title>
+    <script type="module">
+      import * as prismic from "https://cdn.skypack.dev/@prismicio/client";
+      import * as prismicH from "https://cdn.skypack.dev/@prismicio/helpers";
+      const repoName = "ksense-coding-challenge-burdge";
+      const endpoint = prismic.getEndpoint(repoName);
+      const client = prismic.createClient(endpoint);
+      const init = async () => {
+        const prismicDoc = await client.getFirst();
+        const { title, description } = prismicDoc.data;
+        const titleHTML = prismicH.asHTML(title);
+        const descriptionHTML = prismicH.asHTML(description);
+      };
+
+      init();
+    </script>
   </head>
   <body>
-          <nav class='nav-top'>
-        <span class='title'><b>Welcome to my Ksense Code Challenge!</b></span>
-        
-        </nav>
+    <nav class="nav-top">
+      <span class="title"><b>Welcome to my Ksense Code Challenge!</b></span>
+    </nav>
 
-          <!-- side navbar/mons listing-->      
-         <div class="area">
-  <nav class="main-menu">
-    <ul id = 'user-list'>
-    </ul>
-  </nav>
-</div>
-  </nav>
-
-
-
-<!--main content -->
-      <div class='container'>
-           <img
-            display="flex"
-              id="main-img"
-              src="https://imgs.search.brave.com/5G3RKsZMZfhhVXvarK3e5HbnnOE_yyk1EQGBsGYP7n4/rs:fit:1024:768:1/g:ce/aHR0cDovLzMuYnAu/YmxvZ3Nwb3QuY29t/Ly1zV2RDSnFkZ3Ji/VS9UX3BldTlyVWRW/SS9BQUFBQUFBQUVT/RS9TcFdGOTNsak9Z/cy9zMTYwMC9CZWF1/dGlmdWwrZG9nK2hk/K1dhbGxwYXBlcnNf/MS5qcGc"
-            />
-          <div justify-content="space-around">
- <br>
-            <div>
-              <hr />
-            <h3 id="user-id">Choose a user to see their posts<h3>
-              <hr />
-              <ul id="post-list">
-
-              </ul>
-          </div>
-  
-        </div>
-
-
+    <!-- side navbar-->
+    <div class="area">
+      <nav class="main-menu">
+        <ul id="user-list"></ul>
+      </nav>
     </div>
-    
-    <script language="javascript" defer src = "./src/index.js"></script>
+
+    <!--main content -->
+    <div>
+      <img
+        display="flex"
+        width="100%"
+        id="main-img"
+        src="https://imgs.search.brave.com/5G3RKsZMZfhhVXvarK3e5HbnnOE_yyk1EQGBsGYP7n4/rs:fit:1024:768:1/g:ce/aHR0cDovLzMuYnAu/YmxvZ3Nwb3QuY29t/Ly1zV2RDSnFkZ3Ji/VS9UX3BldTlyVWRW/SS9BQUFBQUFBQUVT/RS9TcFdGOTNsak9Z/cy9zMTYwMC9CZWF1/dGlmdWwrZG9nK2hk/K1dhbGxwYXBlcnNf/MS5qcGc"
+      />
+      <div class="container">
+        <div>
+          <h3 id="user-id">Choose a user to see their posts</h3>
+          <ul id="post-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script language="javascript" defer src="./src/index.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -66,7 +61,6 @@
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
-    ></script> 
-      </body>
-  </html>
-    
+    ></script>
+  </body>
+</html>

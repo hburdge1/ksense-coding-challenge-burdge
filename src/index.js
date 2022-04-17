@@ -1,14 +1,10 @@
 
 
 $(document).ready(function () {
-    // full-scope variables
 const mainImg = document.getElementById("main-img")
-const pkmnType = document.getElementById("pkmn-type")
 const userId = document.getElementById("user-id")
 const postList = document.getElementById("post-list")
 const userList = document.getElementById("user-list")
-let teamDiv = document.createElement('div')
-
 
 
 function toTitleCase(upper) {
@@ -45,13 +41,13 @@ function fetchPosts(d) {
     fetch(`https://jsonplaceholder.typicode.com/users/${d.id}`)
         .then(r=>r.json())
         .then(user=> renderUser(user))
-        .then(()=> setImage)
+        .then(setImage())
 }
 //end fetch of feat mon//
 function setImage(){
-      fetch("https://dog.ceo/api/breeds/image/random")
-        .then(r=>r.json())
-        .then(dog=> mainImg.src=`${dog.message}`)
+    mainImg.src="https://placedog.net/640/480?r"
+    console.log(mainImg)
+            // mainImg.src=`${dog.message}`)
 }
 function renderUser(u){
     removeAllChildNodes(postList)
@@ -62,8 +58,8 @@ function renderUser(u){
             posts.map((p)=>{
                 let postLi = document.createElement('li')
                 let postBody= document.createElement('p')
-                postLi.innerHTML = `${p.title}`
-                postBody.innerHTML = `${p.body}`
+                postLi.innerHTML = toTitleCase(`${p.title}`)
+                postBody.innerHTML = toTitleCase(`${p.body}`)
                 postLi.appendChild(postBody)
                 postList.appendChild(postLi)
             })

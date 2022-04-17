@@ -2,19 +2,19 @@ html,
 body {
   width: fit-content;
   height: fit-content;
+  align-items: center;
   padding-left: 5%;
   padding-right: 5%;
   margin: auto;
   background-color: rgba(255, 255, 255, 0.747);
-  overflow: hidden;
+  overflow: scroll;
 }
 h3 {
   width: fit-content;
-  padding-left: 350px;
+  padding-left: 300px;
 }
 .container {
   display: grid;
-
   width: 100%;
   height: 100%;
   border-style: solid;
@@ -22,14 +22,9 @@ h3 {
   border-width: 1px;
   margin: auto;
 }
-img {
-  display: grid;
-  column-span: 3;
-  grid-row-start: 2;
-  grid-row-end: 4;
-}
+
 .container > div {
-  overflow: auto;
+ width:fit-content
 }
 
 ::-webkit-scrollbar {
@@ -89,7 +84,7 @@ nav.main-menu.expanded {
 .no-touch .scrollable.hover:hover {
   overflow-y: auto;
 }
-/*this keeps bullet points off on the sidebar, I like this*/
+
 nav ul,
 nav li {
   list-style-type: none;
@@ -105,32 +100,5 @@ nav li {
   src: local("Titillium WebLight"), local("TitilliumWeb-Light"),
     url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
       format("woff");
-}
-/* #mon-list {
-  color: white;
-}
-
-#mon-list:hover {
-  color: black;
-} */
-
-.rough {
-  color: firebrick;
-}
-.fine {
-  color: goldenrod;
-}
-.good {
-  color: green;
-}
-
-.right-menu:hover,
-nav.right-menu.expanded {
-  width: 150px;
-  /* padding-left: auto;
-  padding-right: auto; */
-  /* margin: auto; */
-  /* align-content: space-around; */
-  text-align: center;
 }
 
